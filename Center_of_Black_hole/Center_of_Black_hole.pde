@@ -8,6 +8,24 @@ void setup() {
 
 void draw() {
   background(0);
+  //Text information
+  fill(234,0,0);
+  textAlign(LEFT, TOP);
+  textSize(19);
+  text("Food Asteroids!!", 30, 27);
+  textSize(12);
+  fill(220);
+  text("Hover over an asteroid to inspect its data", 30, 51);
+  textAlign(RIGHT, TOP);
+  textSize(12);
+  fill(235);
+  text("P: PAUSE / RESUME", width - 18, 24);
+  text("R: RESPAWN ALL", width - 18, 43);
+  fill(255);
+  textSize(11);
+  text("SIZE = CALORIES | TRAIL LENGTH = EATING TIME |",width - 18,64);
+  textAlign(LEFT, TOP);
+  
   // Blink value oscillates between 100 and 255
   float glow = map(sin(blink), -1, 1, 100, 255);
 
