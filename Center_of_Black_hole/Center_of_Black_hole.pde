@@ -8,18 +8,26 @@ void setup() {
 void draw() {
   background(0);
 
-  // Blink value oscillates
-  float glow = map(cos(blink), -1, 1, 160, 300);
+  // Blink value oscillates between 100 and 255
+  float glow = map(sin(blink), -1, 1, 100, 255);
 
-  // Aura
-  for (int i = 120; i > 0; i--) {
-    fill(255, 255, 200, i * 0.6);
-    ellipse(width/2, height/2, glow + i*2, glow + i*2);
+  // AURA
+  for (int i = 120; i > 20; i -= 10) {
+    fill(255, 255, 220, map(i, 120, 20, 5, 40));
+    circle(100, 100, i + glow * 0.15);
   }
 
-  // Moon
-  fill(255, 255, 220);
-  ellipse(width/2, height/2, 200, 200);
+  // OUTER GLOW
+  fill(255, 255, 235, 50);
+  circle(100, 100, 100);
 
-  blink += 0.03;
+  // MAIN MOON
+  fill(255, 255, 235, glow);
+  circle(100, 100, 90);
+
+  // SHADOW CIRCLE TO FORM CRESCENT
+  fill(0);
+  circle(90, 85, 90);
+
+  blink += 0.05;
 }
