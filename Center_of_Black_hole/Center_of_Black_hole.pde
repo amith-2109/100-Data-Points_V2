@@ -1,5 +1,7 @@
 float blink = 0;
 float flash = 0;
+float bhX = 600;
+float bhY = 350;
 
 void setup() {
   size(1280, 720);
@@ -27,7 +29,7 @@ void draw() {
   textAlign(LEFT, TOP);
   
   // Blink value oscillates between 100 and 255
-  float glow = map(sin(blink), -1, 1, 100, 255);
+  float glow = map(cos(blink), -1,1,200,0);
 
   // AURA
   for (int i = 130; i > 10; i -= 10) {
@@ -51,12 +53,12 @@ void draw() {
   flash += 0.2;
 
   // Outer bright ring
-  fill(255, 255, 255, glow);
+  fill(255, 255, 255);
   ellipse(600, 350, 105, 100);
 
   // Black hole centre
   fill(0);
-  ellipse(600, 352, 100, 100);
+  ellipse(600, 351, 100, 100);
 
   blink -= 0.0009;
-}
+} 
