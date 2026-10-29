@@ -1,8 +1,27 @@
-float blink = 0;
-float flash = 0;
-float bhX = 600;
-float bhY = 350;
+float blink = 0, flash = 0;
+float bhX = 600, bhY = 350;
+PVector blackHolePos;
+Asteroid[] asteroids = new Asteroid[25];
 
+color[] trailColours = {
+  color(255, 70, 110), color(255, 130, 55), color(255, 205, 60), color(205, 240, 65), color(80, 220, 120),
+  color(55, 220, 190), color(65, 210, 255), color(70, 130, 255), color(125, 95, 255), color(190, 80, 255),
+  color(255, 80, 210), color(255, 165, 180), color(180, 255, 230), color(140, 230, 255), color(190, 190, 255),
+  color(255, 240, 150), color(150, 255, 130), color(255, 120, 80), color(100, 255, 245), color(210, 125, 90),
+  color(220, 100, 145), color(150, 190, 80), color(80, 180, 150), color(145, 115, 75), color(230, 135, 255)
+};
+
+int[] caloriesData = {
+  105, 95, 120, 420, 210, 180, 120, 165, 140, 330,
+  90, 520, 620, 190, 50, 270, 150, 220, 195, 200,
+  310, 150, 130, 700, 360
+};
+
+float[] eatingTimes = {
+  3, 4, 12, 18, 10, 14, 7, 5, 6, 11,
+  9, 16, 22, 8, 13, 17, 2, 23, 15, 19,
+  21, 1, 24, 20, 25
+};
 void setup() {
   size(1280, 720);
   noStroke();
