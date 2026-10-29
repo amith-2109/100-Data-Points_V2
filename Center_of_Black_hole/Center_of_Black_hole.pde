@@ -22,9 +22,15 @@ float[] eatingTimes = {
   9, 16, 22, 8, 13, 17, 2, 23, 15, 19,
   21, 1, 24, 20, 25
 };
+
 void setup() {
   size(1280, 720);
   noStroke();
+  blackHolePos = new PVector(bhX, bhY);
+  
+  for (int i = 0; i < asteroids.length; i++) {
+    asteroids[i] = new Asteroid(i);
+  }
 }
 
 void draw() {
