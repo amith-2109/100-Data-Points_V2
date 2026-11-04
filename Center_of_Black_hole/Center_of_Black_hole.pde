@@ -1,3 +1,4 @@
+//Data arrays of the calorie, time taken to eat.
 float blink = 0;
 float flash = 0;
 float bhX = 600;
@@ -20,6 +21,7 @@ int[] eatingTimes = {
 
 Asteroid[] asteroids = new Asteroid[25];
 
+//Aestorid variable for further data input.
 void setup() {
   size(1280, 720);
   for (int i = 0; i < asteroids.length; i++) {
@@ -37,8 +39,8 @@ void draw() {
   text("SIZE = CALORIES | DISTANCE = EATING TIME", 40, 680);
   text( "COLOUR = ORDER OF THE RAINBOW | DISTANCE FROM BLACK HOLE INDICATES THE TIME TAKEN", 40, 695);
   drawBlackHole();
-  for (Asteroid a : asteroids) {
-    a.display();
+  for (Asteroid x : asteroids) {
+    x.display();
   }
 }
 
@@ -50,9 +52,9 @@ void drawBlackHole() {
     fill(255, map(i, 130, 10, 0, 255), 0, map(i, 130, 10, 20, 70));
     ellipse(bhX, bhY + 10, i * glow * 0.025, i - glow * 0.025);
   }
-
+  blink -= 0.0031;
   float glare = map(sin(flash), -1, 1, 100, 255);
-  for (int q = 180; q > 20; q -= 10) {
+  for (int q = 180; q < 20; q -= 10) {
     fill(255, 255, 255, map(q, 120, 20, 5, 40));
     circle(bhX, bhY, q + glare * 0.15);
   }
@@ -61,14 +63,45 @@ void drawBlackHole() {
   ellipse(bhX, bhY, 105, 100);
   fill(0);
   ellipse(bhX, bhY + 1, 100, 100);
-
   flash += 0.2;
-  blink -= 0.0031;
 }
 
+class Asteroid {
+  float x;
+  float y;
+  float asteroidSize;
+  float eatingTime;
+  color asteroidColour;
+  float calories;
 
+  Asteroid(int index) {
+    calories = caloriesData[index];
+    eatingTime = eatingTimes[index];
+    asteroidColour = trailColours[index];
+    asteroidSize = map(calories, 90 , 700, 5.5, 14) * 1.7;
+
+    float angle = map(index, 0, 25, 0, 6.7) + random(-0.12, 0.12);
+    float distanceFromHole = map(eatingTime, 1, 25, 125, 310);
+
+    x = bhX + cos(angle) * distanceFromHole;
+    y = bhY + sin(angle) * distanceFromHole;
+  }
+//more draw functions to draw the asteroids relative to the data.
+  void display() {
+    drawAura();
+    drawMainasteroid();
+  }
+//Aura around the asteoirds 
+  void drawAura() {
+    noStroke();
+    for (int i = 8; i > 0; i--) {
+      float s = asteroidSize + i * 5;
+      fill(red(asteroidColour), green(asteroidColour), blue(asteroidColour), map(i, 8, 1, 8, 35));
+      circle(x, y, s);
+    }
+  }
 //Dark spots and drawing the asteroid and its cratrers.
-  void drawBody() {
+  void drawMainasteroid() {
     fill(red(asteroidColour), green(asteroidColour), blue(asteroidColour), 120);
     circle(x, y, asteroidSize * 1.5);
 
