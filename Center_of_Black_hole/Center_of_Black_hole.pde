@@ -65,3 +65,19 @@ void drawBlackHole() {
   flash += 0.2;
   blink -= 0.0031;
 }
+
+
+//Dark spots and drawing the asteroid and its cratrers.
+  void drawBody() {
+    fill(red(asteroidColour), green(asteroidColour), blue(asteroidColour), 120);
+    circle(x, y, asteroidSize * 1.5);
+
+    fill(255);
+    circle(x, y, asteroidSize);
+
+    fill(0);
+    circle(x, y-4, 3);
+    circle(x, y+4, 2);
+    circle(x + 20 * 0.20, y + 10 * 0.12, 2);
+  }
+}
